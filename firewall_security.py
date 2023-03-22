@@ -1,4 +1,5 @@
 import re
+
 # Define a function to check for security issues in submitted data
 def security_scan(data):
     # Look for HTML script tags
@@ -39,6 +40,3 @@ def security_scan_2(data):
         return True
 
 
-
-
-        fenjifdsijfhiwuhf

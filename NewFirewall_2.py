@@ -8,7 +8,7 @@ app = Flask(__name__)
 def has_answered_security_question():
     enable_firewall1 = request.form.get('enable_firewall1')
     enable_firewall2 = request.form.get('enable_firewall2')
-    return enable_firewall1 == 'yes' or enable_firewall2 == 'yes' or enable_firewall1 == 'no' or enable_firewall2 == 'no'
+    return enable_firewall1 is not None or enable_firewall2 is not None or request.method == 'GET'
 
 # Define a Flask route for the root URL of the web application
 @app.route('/', methods=['GET', 'POST'])
@@ -35,6 +35,8 @@ def index():
             else:
                 # If potential security issues are found, return an error message
                 return "Security scan detected potentially malicious content in your data."
+        if enable_firewall1 == 'no':
+            return "Data submitted successfully!"
 
         # Check if the user wants to enable the second firewall security
         enable_firewall2 = request.form.get('enable_firewall2')
@@ -49,13 +51,14 @@ def index():
             else:
                 # If potential security issues are found, return an error message
                 return "Security scan detected potentially malicious content in your data."
-
-        # If neither firewall security is enabled, simply return a success message
- 
-        if enable_firewall1 == 'no':
-            return "Data submitted successfully!"
+        
         if enable_firewall2 == 'no':
-            return "Data submitted successfully!"
+            return "Data submitted successfully!" 
+    # If neither firewall security is enabled, simply return a success message
+ 
+
+
+
     # If the request method is not POST, return an HTML form asking the user which firewall security they want to enable
     
     else:
@@ -66,15 +69,19 @@ def index():
     <title>Web Application Firewall</title>
     <script>
       function hasAnsweredSecurityQuestion() {
+
         var enable_firewall1 = document.getElementsByName('enable_firewall1')[0].checked;
         var enable_firewall2 = document.getElementsByName('enable_firewall2')[0].checked;
-        if (enable_firewall1 || enable_firewall2) {
+  
+        if (enable_firewall1 || enable_firewall2 ) {
           return true;
-        } else {
+          } 
+
+        else {
           alert('Please answer at least one security question to access the input box.');
           return false;
+          }
         }
-      }
     </script>
   </head>
   <body>
@@ -100,8 +107,8 @@ def index():
     </form>
   </body>
 </html>
-
 '''
+
 # Start the Flask application and set it to run in debug mode
 if __name__ == '__main__':
     app.run(debug=True)

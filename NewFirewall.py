@@ -1,5 +1,5 @@
 import re
-from flask import Flask, request, Response
+from flask import Flask, request, Response , render_template
 
 # Create an instance of the Flask class and set the name of the application
 app = Flask(__name__)
@@ -45,28 +45,7 @@ def index():
 
     # If the request method is not POST, return an HTML form asking the user which firewall security they want to enable
     else:
-        return '''
-<html>
-    <body>
-        <h1>Welcome to the web application firewall!</h1>
-        <form method="post">
-            <p>
-                <label for="enable_firewall1">Do you want to enable the first firewall security?</label><br>
-                <input type="radio" name="enable_firewall1" value="yes" onclick="document.getElementsByName('enable_firewall2')[1].disabled = false; document.getElementsByName('enable_firewall2')[1].checked = false; if (this.value === 'yes') { document.getElementsByName('enable_firewall2')[0].disabled = true; } else { document.getElementsByName('enable_firewall2')[0].disabled = false; }">Yes
-                <input type="radio" name="enable_firewall1" value="no" onclick="document.getElementsByName('enable_firewall2')[0].checked = false; document.getElementsByName('enable_firewall2')[1].disabled = true; document.getElementsByName('enable_firewall2')[1].checked = false; document.getElementsByName('enable_firewall2')[0].disabled = false;">No
-            </p>
-            <p>
-                <label for="enable_firewall2">Do you want to enable the second firewall security?</label><br>
-                <input type="radio" name="enable_firewall2" value="yes" onclick="document.getElementsByName('enable_firewall1')[1].disabled = false; document.getElementsByName('enable_firewall1')[1].checked = false; if (this.value === 'yes') { document.getElementsByName('enable_firewall1')[0].disabled = true; } else { document.getElementsByName('enable_firewall1')[0].disabled = false; }">Yes
-                <input type="radio" name="enable_firewall2" value="no" onclick="document.getElementsByName('enable_firewall1')[0].checked = false; document.getElementsByName('enable_firewall1')[1].disabled = true; document.getElementsByName('enable_firewall1')[1].checked = false; document.getElementsByName('enable_firewall1')[0].disabled = false;">No
-            </p>
-            <input type="text" name="data">
-            <input type="submit" value="Submit">
-        </form>
-    </body>
-</html>
-
-'''
+        return render_template('index.html')
 
 
 # Start the Flask application and set it to run in debug mode
