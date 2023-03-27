@@ -31,11 +31,7 @@ def security_scan(data):
     elif re.search("[^\w\s]", data):
         return False
 
-    # limits the input data length to 10,000 characters
-    # prevent buffer overflow attacks
-    elif len(data) > 10000:
-        return False
-
+   
     # If no potential security issues are found, return True
     else:
         return True
@@ -46,6 +42,10 @@ def security_scan_2(data):
         return False
     # checks that the email address string has a valid format
     elif not re.search(r'^[a-zA-Z0-9_+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$', data):
+        return False
+    # limits the input data length to 10,000 characters
+    # prevent buffer overflow attacks
+    elif len(data) > 10000:
         return False
 
     # If no potential security issues are found, return True
