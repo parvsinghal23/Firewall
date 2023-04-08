@@ -1,12 +1,50 @@
 import re
-from flask import Flask, request, Response , render_template
+from flask import Flask, request, Response , render_template,redirect,url_for
+
+# Define a list of valid username and password combinations
+USERS = {
+   'admin': 'password123',
+    'user': 'password456',
+    'user1': 'password789'
+}
 
 # Create an instance of the Flask class and set the name of the application
 app = Flask(__name__)
 
+# Define a function to check if the given username and password are valid
+def authenticate(username, password):
+    return username in USERS and USERS[username] == password
+
+# Define a Flask route for the login page
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        # Get the submitted username and password from the form
+        username = request.form.get('username')
+        password = request.form.get('password')
+
+        # Check if the provided credentials are valid
+        if authenticate(username, password):
+            # If the credentials are valid, redirect to the main page
+            return render_template('index.html')
+        else:
+            # If the credentials are invalid, show an error message
+            return render_template('login.html', error='Invalid username or password')
+    else:
+        # If the request method is not POST, show the login form
+        return render_template('login.html')
+
+
 # Define a Flask route for the root URL of the web application
 @app.route('/', methods=['GET', 'POST'])
 def index():
+     # Check if the user is authenticated
+  
+    if not request.authorization:
+        # If not authenticated, redirect to the login page
+        return redirect(url_for('login'))
+
+    # If the user is authenticated, continue with the normal logic
     # If the request method is POST (i.e. the user has submitted data)
     if request.method == 'POST':
         # Get the submitted data from the form
@@ -43,6 +81,8 @@ def index():
         # If neither firewall security is enabled, simply return a success message
         return "Data submitted successfully!"
 
+   
+   
     # If the request method is not POST, return an HTML form asking the user which firewall security they want to enable
     else:
         return render_template('index.html')
