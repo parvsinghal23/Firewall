@@ -1,15 +1,16 @@
 import re
-from flask import Flask, request, Response , render_template,redirect,url_for
+from flask import Flask, request, Response, render_template, redirect, url_for, session
 
 # Define a list of valid username and password combinations
 USERS = {
-   'admin': 'password123',
-    'user': 'password456',
-    'user1': 'password789'
+    'admin': 'password123',
+    'user1': 'password456',
+    'user2': 'password789'
 }
 
 # Create an instance of the Flask class and set the name of the application
 app = Flask(__name__)
+app.secret_key = 'secret_key'
 
 # Define a function to check if the given username and password are valid
 def authenticate(username, password):
@@ -25,7 +26,8 @@ def login():
 
         # Check if the provided credentials are valid
         if authenticate(username, password):
-            # If the credentials are valid, redirect to the main page
+            # If the credentials are valid, store the authenticated user in the session and redirect to the main page
+            session['username'] = username
             return render_template('index.html')
         else:
             # If the credentials are invalid, show an error message
@@ -38,9 +40,8 @@ def login():
 # Define a Flask route for the root URL of the web application
 @app.route('/', methods=['GET', 'POST'])
 def index():
-     # Check if the user is authenticated
-  
-    if not request.authorization:
+    # Check if the user is authenticated
+    if 'username' not in session:
         # If not authenticated, redirect to the login page
         return redirect(url_for('login'))
 
@@ -74,15 +75,8 @@ def index():
             if security_scan_2(data):
                 # If the data passes the security scan, return a success message
                 return "Data submitted successfully!"
-            else:
-                # If potential security issues are found, return an error message
-                return "Security scan detected potentially malicious content in your data."
 
-        # If neither firewall security is enabled, simply return a success message
-        return "Data submitted successfully!"
-
-   
-   
+                
     # If the request method is not POST, return an HTML form asking the user which firewall security they want to enable
     else:
         return render_template('index.html')
