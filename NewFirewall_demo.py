@@ -1,5 +1,5 @@
 import re
-from flask import Flask, request, Response
+from flask import Flask, request, Response , render_template
 
 # Create an instance of the Flask class and set the name of the application
 app = Flask(__name__)
@@ -32,11 +32,13 @@ def index():
             if security_scan(data):
                 # If the data passes the security scan, return a success message
                 return "Data submitted successfully!"
+                return render_template('formvalidation.html')
             else:
                 # If potential security issues are found, return an error message
                 return "Security scan detected potentially malicious content in your data."
         if enable_firewall1 == 'no':
             return "Data submitted successfully!"
+            return render_template('formvalidation.html')
 
         # Check if the user wants to enable the second firewall security
         enable_firewall2 = request.form.get('enable_firewall2')
@@ -48,12 +50,14 @@ def index():
             if security_scan(data):
                 # If the data passes the security scan, return a success message
                 return "Data submitted successfully!"
+                return render_template('formvalidation.html')
             else:
                 # If potential security issues are found, return an error message
                 return "Security scan detected potentially malicious content in your data."
         
         if enable_firewall2 == 'no':
-            return "Data submitted successfully!" 
+            return "Data submitted successfully!"
+            return render_template('formvalidation.html') 
     # If neither firewall security is enabled, simply return a success message
  
 
