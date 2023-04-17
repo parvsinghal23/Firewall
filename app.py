@@ -12,7 +12,6 @@ def has_answered_security_question():
     return enable_firewall1 is not None or enable_firewall2 is not None or request.method == 'GET'
 
 
-
 # Define a Flask route for the root URL of the web application
 @app.route('/')
 def route():
