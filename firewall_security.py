@@ -11,7 +11,7 @@ def security_scan(data):
         return False
     
     # Look for sensitive data being transmitted or stored in an unencrypted format
-    elif re.search(r'\b(password|credit card number|social security number|bank account number)\b', data, re.IGNORECASE):
+    elif re.search(r'\b(password|123456|qwerty|abc123|letmein|monkey|football|iloveyou|admin|welcome|login|princess|sunshine|flower|hottie|loveme|zaq1zaq1|baseball|dragon|superman)\b', data, re.IGNORECASE):
         return False
         
     # Look for various potential attacks using special characters
@@ -57,9 +57,6 @@ def security_scan_2(data):
     elif len(data) > 10000:
         return False
     
-     # Check for weak cryptography
-    elif re.search(r'\b(DES|RC4|MD5)\b', data):
-        return False
 
     # Check for insecure communications
     elif re.search(r'\b(http|ftp)\://', data, re.IGNORECASE):
