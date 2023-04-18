@@ -15,10 +15,7 @@ def security_scan(data):
         return False
         
     # Look for various potential attacks using special characters
-    elif re.search("((\%3C)|<)[^(\%3E)|>]+((\%3E)|>)", data):
-        return False
-    elif re.search("((\%3C)|<)[^\n]+((\%3E)|>)", data):
-        return False
+   
     elif re.search("';'", data):
         return False
     elif re.search('";"', data):
@@ -84,6 +81,10 @@ def security_scan_2(data):
     elif re.search(r'<!ENTITY', data):
         return False
     elif re.search(r'<\!DOCTYPE', data):
+        return False
+    elif re.search("((\%3C)|<)[^(\%3E)|>]+((\%3E)|>)", data):
+        return False
+    elif re.search("((\%3C)|<)[^\n]+((\%3E)|>)", data):
         return False
 
     # If no potential security issues are found, return True
