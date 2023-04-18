@@ -61,8 +61,6 @@ def security_scan_2(data):
     elif re.search(r'\b(DES|RC4|MD5)\b', data):
         return False
 
-
-
     # Check for insecure communications
     elif re.search(r'\b(http|ftp)\://', data, re.IGNORECASE):
         return False
@@ -94,21 +92,3 @@ def security_scan_2(data):
     # If no potential security issues are found, return True
     else:
         return True
-        return ''' 
-        <!DOCTYPE html>
-<html>
-<body>
-
-<h2>JavaScript Validation</h2>
-
-<form action="/action_page.php" method="post">
-  <input type="text" name="fname" required>
-  <input type="submit" value="Submit">
-</form>
-
-<p>If you click submit, without filling out the text field,
-your browser will display an error message.</p>
-
-</body>
-</html>
-        '''

@@ -85,7 +85,7 @@
     <h2>Login Form</h2>
     <form onsubmit="login(); return false;">
       <div class="imgcontainer">
-        <img src="avatar" alt="Avatar" class="avatar">
+        <img src="avatar.png" alt="Avatar" class="avatar">
       </div>
       <label for="username"><b>Username</b></label>
       <input type="text" placeholder="Enter Username" id="username" name="username" required>
@@ -106,8 +106,7 @@
       "admin": "password",
       "user": "password123",
       "user1": "password456",
-	  "user2": "password789"
-
+	    "user2": "password789"
     };
 
     function login() {
@@ -121,6 +120,7 @@
         // do something else, such as redirect to another page
       } else {
         alert("Invalid username or password!");
+        window.location.href = "http://localhost:8080/login";
       }
     }
   </script>

@@ -1,7 +1,6 @@
 import re
 from flask import Flask, request, Response, render_template, redirect, url_for , session
 
-
 # Create an instance of the Flask class and set the name of the application
 app = Flask(__name__)
 
@@ -11,12 +10,10 @@ def has_answered_security_question():
     enable_firewall2 = request.form.get('enable_firewall2')
     return enable_firewall1 is not None or enable_firewall2 is not None or request.method == 'GET'
 
-
 # Define a Flask route for the root URL of the web application
 @app.route('/')
 def route():
         return redirect('/login')
-
 
 @app.route('/index', methods=['GET','POST'])
 def index():
@@ -76,6 +73,11 @@ def login():
     # If the request method is not POST, return an HTML form asking for login credentials
     else:
         return render_template('login.html')
+
+@app.route('/get_student_name', methods=['GET'])
+def get_student_name():
+    sap_id = request.args.get('sap_id')
+    return get_student_name(sap_id)
 
 if __name__ == '__main__':
     # Start the Flask application and set it to run in debug mode
