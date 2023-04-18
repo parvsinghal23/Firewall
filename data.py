@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import pandas as pd
 
 # Load the Excel file containing student data
@@ -12,7 +11,6 @@ def get_student_name(sap_id):
     else:
         return 'Student not found'
 
-=======
 import pandas as pd
 
 # Load the Excel file containing student data
@@ -38,4 +36,3 @@ def search_student():
 
 if __name__ == '__main__':
     app.run()
->>>>>>> 35b9703ec4abbf5a981721b8a01ec4e94fe70b89
