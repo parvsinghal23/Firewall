@@ -5,23 +5,29 @@
 	<style>
 		body {
 			font-family: Arial, sans-serif;
-			background-color: #f2f2f2;
+			margin: 0;
+			padding: 0;
+			background-image: url("images/background.jpg");
+			background-repeat: no-repeat;
+			background-size: cover;
 		}
 		
 		h1 {
-			font-size: 36px;
+			font-size: 40px;
 			text-align: center;
 			margin-top: 50px;
 			margin-bottom: 50px;
+			color: #fff;
+			text-shadow: 1px 1px black;
 		}
 		
 		form {
 			width: 50%;
 			margin: 0 auto;
-			background-color: #fff;
+			background-color: orange,blue;
 			padding: 20px;
 			border-radius: 10px;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+			box-shadow: 0 0 10px orange, blue(0, 0, 0, 0.2);
 		}
 		
 		label {
@@ -56,9 +62,19 @@
 			background-color: #3e8e41;
 			color: red;
 		}
+		
+		/* Add logo */
+		.logo {
+			position: absolute;
+			top: 20px;
+			left: 20px;
+			height: 50px;
+		}
 	</style>
 </head>
 <body>
+	<img src="https://via.placeholder.com/150" alt="Image">
+	<img class="logo" src="https://via.placeholder.com/50" alt="Logo">
 	<h1>Welcome to the web application firewall!</h1>
 	<form method="post" onsubmit="return validateForm()">
 		<p>
