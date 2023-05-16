@@ -73,6 +73,11 @@
       float: right;
       padding-top: 16px;
     }
+    
+    /* Add border for questions */
+    label {
+      border: 1px solid black;
+    }
 
     @media screen and (max-width: 600px) {
       .container {
@@ -86,7 +91,7 @@
     <h2>Login Form</h2>
     <form onsubmit="login(); return false;">
       <div class="imgcontainer">
-        <img src="images/logo2.png" alt="Avatar" class="avatar">
+        <img src="logo2.png" alt="Avatar" class="avatar">
       </div>
       <label for="username"><b>Username</b></label>
       <input type="text" placeholder="Enter Username" id="username" name="username" required>
