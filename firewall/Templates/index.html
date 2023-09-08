@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Welcome to the web application firewall!</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+		}
+		
+		h1 {
+			font-size: 36px;
+			text-align: center;
+			margin-top: 50px;
+			margin-bottom: 50px;
+		}
+		
+		form {
+			width: 50%;
+			margin: 0 auto;
+			background-color: #fff;
+			padding: 20px;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+		}
+		
+		label {
+			font-size: 18px;
+			display: block;
+			margin-bottom: 10px;
+		}
+		
+		input[type="text"] {
+			display: block;
+			margin-top: 20px;
+			padding: 10px;
+			border-radius: 5px;
+			border: 1px solid #ccc;
+			width: 100%;
+			box-sizing: border-box;
+		}
+		
+		input[type="submit"] {
+			margin-top: 20px;
+			padding: 10px 20px;
+			background-color: #4CAF50;
+			color: #fff;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 18px;
+			transition: background-color 0.3s;
+		}
+		
+		input[type="submit"]:hover {
+			background-color: #3e8e41;
+		}
+	</style>
+</head>
+<body>
+	<label style="position:relative; left:550px; "><img class="logo"  src="avatar_1.jpg" alt="Logo"></label>
+	<h1>Welcome to the web application firewall!</h1>
+	<form method="post" onsubmit="return validateForm()">
+		<p>
+			<label for="enable_firewall1">Do you want to enable the basic firewall security?</label><br>
+			<input type="checkbox" name="enable_firewall1" value="yes", onclick="document.getElementsByName('enable_firewall2')[1].disabled = false; document.getElementsByName('enable_firewall2')[1].checked = false; if (this.checked) { document.getElementsByName('enable_firewall2')[0].disabled = true; } else { document.getElementsByName('enable_firewall2')[0].disabled = false; }">Yes
+      		<input type="checkbox" name="enable_firewall1" value="no", onclick="document.getElementsByName('enable_firewall2')[1].disabled = false; document.getElementsByName('enable_firewall2')[1].checked = false; if (this.checked) { document.getElementsByName('enable_firewall2')[0].disabled = true; } else { document.getElementsByName('enable_firewall2')[0].disabled = false; }">No
+    	</p>
+		<p>
+			<label for="enable_firewall2">Do you want to enable the high-level firewall security?</label><br>
+			<input type="checkbox" name="enable_firewall2" value="yes" onclick="document.getElementsByName('enable_firewall1')[1].disabled = false; document.getElementsByName('enable_firewall1')[1].checked = false; if (this.checked) { document.getElementsByName('enable_firewall1')[0].disabled = true; } else { document.getElementsByName('enable_firewall1')[0].disabled = false; }">Yes
+      		<input type="checkbox" name="enable_firewall2" value="no" onclick="document.getElementsByName('enable_firewall1')[1].disabled = false; document.getElementsByName('enable_firewall1')[1].checked = false; if (this.checked) { document.getElementsByName('enable_firewall1')[0].disabled = true; } else { document.getElementsByName('enable_firewall1')[0].disabled = false; }">No
+    	</p>
+		<label for="data">Enter your data:</label>
+		<input type="text" name="data">
+		<input type="submit" value="Submit" style="background-color: white; color: black; border: 2px solid #4CAF50; border-radius: 5px; padding: 12px 24px; cursor: pointer;">
+	</form>
+
+	<script>
+		function validateForm() {
+			var firewall1Checked = document.getElementsByName("enable_firewall1")[0].checked || document.getElementsByName("enable_firewall1")[1].checked;
+			var firewall2Checked = document.getElementsByName("enable_firewall2")[0].checked || document.getElementsByName("enable_firewall2")[1].checked;
+			if (!firewall1Checked && !firewall2Checked) {
+				alert("Please check at least one of the security questions!");
+				return false;
+			}
+		}
+	
+	</script>
+</body>
+</html>

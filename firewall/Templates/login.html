@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+
+    .container {
+      width: 400px;
+      margin: auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      text-align: center;
+      color: #666;
+    }
+
+    input[type=text], input[type=password] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: red;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color:red;
+    }
+
+    .cancelbtn {
+      width: auto;
+      padding: 10px 18px;
+      background-color: #f44336;
+    }
+
+    .imgcontainer {
+      text-align: center;
+      margin: 24px 0 12px 0;
+    }
+
+    img.avatar {
+      width: 40%;
+      border-radius: 50%;
+    }
+
+    .container > p {
+      text-align: center;
+      color: #666;
+    }
+
+    span.psw {
+      float: right;
+      padding-top: 16px;
+    }
+
+    @media screen and (max-width: 600px) {
+      .container {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Login Form</h2>
+    <form onsubmit="login(); return false;">
+      <div class="imgcontainer">
+        <img src="avatar.jpg" alt="Avatar" class="avatar">
+      </div>
+
+      <label for="username"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" id="username" name="username" required>
+      <label for="password"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" id="password" name="password" required>
+      <button type="submit">Login</button>
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+    </form>
+    <p>Don't have an account? <a href="#">Sign up</a></p>
+  </div>
+
+  <script>
+    const userDatabase = {
+      "admin": "password",
+      "user": "password123",
+      "user1": "password456",
+	    "user2": "password789"
+    };
+
+    function login() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      
+      if (username in userDatabase && userDatabase[username] === password) {
+        alert("Login successful!");
+		    window.location.href = "http://localhost:8080/index";
+		
+        // do something else, such as redirect to another page
+      } else {
+        alert("Invalid username or password!");
+        window.location.href = "http://localhost:8080/login";
+      }
+    }
+  </script>
+</body>
+</html>
+
+
